@@ -1,0 +1,40 @@
+# Конфиг SearXNG для OSINT_AGENT (Render / любой Docker-хостинг).
+# Секрет уже заполнен случайным, лишних комментариев нет.
+# Документация настроек: https://docs.searxng.org/admin/settings/settings.html
+
+use_default_settings: true
+
+server:
+  secret_key: "a4f0b9c9e05f171c1e101c4a7599baf8ab2e32c22b600a56"
+  # Приватный инстанс: лимитер и защита от ботов не нужны (они рассчитаны
+  # на публичные сайты и требуют Redis, которого в Space нет)
+  limiter: false
+  image_proxy: false
+
+search:
+  safe_search: 0
+  default_lang: "auto"
+  # JSON-формат обязателен — именно его дергает OSINT_AGENT
+  formats:
+    - html
+    - json
+
+# Движки включены сверх дефолтных: смотрим рунет и мировой веб широко.
+# SearXNG сам выкидывает движок, если тот упал/капчей, и берёт остальные.
+engines:
+  - name: google
+    disabled: false
+  - name: bing
+    disabled: false
+  - name: duckduckgo
+    disabled: false
+  - name: brave
+    disabled: false
+  - name: mojeek
+    disabled: false
+  - name: yandex
+    disabled: false
+  - name: wikipedia
+    disabled: false
+  - name: startpage
+    disabled: false
